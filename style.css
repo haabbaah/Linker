@@ -1,0 +1,443 @@
+@font-face {
+  font-family: robotR;
+  src: url(RobotoRegular.ttf);
+}
+
+@font-face {
+  font-family: 'fontello';
+  src: url('fontello-e5041052/font/fontello.eot?18878437');
+  src: url('../font/fontello.eot?18878437#iefix') format('embedded-opentype'), url('fontello-e5041052/font/fontello.woff2?18878437') format('woff2'), url('fontello-e5041052/font/fontello.woff?18878437') format('woff'), url('fontello-e5041052/font/fontello.ttf?18878437') format('truetype'), url('fontello-e5041052/font/fontello.svg?18878437#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+body {
+  font-family: robotR;
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+i {
+  font-style: normal;
+}
+
+.wrap-half {
+  display: flex;
+}
+
+.wrapper {
+  display: flex;
+  border-bottom: 3px solid #000;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+
+.drag-option {
+  position: relative;
+}
+
+.option-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #fff;
+	background-color: rgba(0, 0, 0, .85);
+	padding: 0.2em;
+	padding-left: 0.5em;
+}
+
+.option-list .item {
+display: flex;
+align-items: center;
+}
+
+.wrap__option {
+  display: flex;
+  justify-content: space-between;
+	align-items: center;
+	padding: 0 0.2em;
+}
+
+.wrap__option i {
+  position: relative;
+  font-family: fontello;
+  font-size: 200%;
+  color: #02a9f4;
+  z-index: 100;
+  transition: all .5s ease;
+}
+
+.wrap__option i:hover {
+  cursor: pointer;
+  transform: rotate(90deg);
+}
+
+#result {
+  width: 100%;
+}
+
+.wrapper-get {
+  height: 10em;
+}
+
+.btn-get {
+  background-color: #02a9f4;
+  color: #fff;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  margin: 0 .3em;
+  margin-left: 0;
+  cursor: pointer;
+  transition: all .17s ease
+}
+
+.btn-get:hover {
+  border: 1px solid #02a9f4;
+  background-color: #FFF;
+  color: #02a9f4;
+}
+
+.reset {
+  background-color: #FF1833;
+  color: #fff;
+  border: 1px solid transparent;
+  transition: all .17s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  border-radius: 3px;
+  font-size: 130%;
+}
+
+.reset:hover {
+  background-color: #fff;
+  color: #FF1833;
+  border: 1px solid #FF1833;
+}
+
+.s-drag {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2em;
+}
+
+.drag-img {
+  position: relative;
+}
+
+.drag-img img {
+  display: block;
+  width: 650px;
+  height: auto;
+  outline: 1px solid #000;
+}
+
+.wrapper-add {
+  display: flex;
+}
+
+.wrapper-add .btn-add {
+  background-color: #02a9f4;
+  border: 1px solid transparent;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0.5em;
+  margin-right: 2px;
+}
+
+.wrapper-add .btn-add:hover {
+  border: 1px solid #02a9f4;
+  background-color: #FFF;
+  color: #02a9f4;
+  cursor: pointer;
+}
+
+.wrap-field {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.wrap-field i {
+  font-family: 'fontello';
+  font-style: normal;
+  color: #02a9f4;
+  margin-right: 0.5em;
+  width: 1em;
+}
+
+.wrap-field .item-field {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+.wrap-field .remove-btn {
+  width: 1.6em;
+  height: 1.6em;
+  background-color: #FF1833;
+  border: 1px solid transparent;
+  color: #fff;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 0.5em;
+}
+
+.wrap-field .remove-btn:hover {
+  background-color: #fff;
+  color: #FF1833;
+  border: 1px solid #FF1833;
+}
+
+
+#logo{
+	filter: contrast(10%);
+}
+
+
+
+/* Draggable */
+
+/* Apply the element you want to drag/resize */
+
+.drsElement {
+  position: absolute;
+  border: 1px solid #333;
+}
+
+.drsElement i {
+  font-family: fontello;
+  font-style: normal;
+  font-size: 80%;
+  line-height: 0.5;
+  color: #000;
+  margin-top: -3px;
+}
+
+/*
+ The main mouse handle that moves the whole element.
+ You can apply to the same tag as drsElement if you want.
+*/
+
+.drsMoveHandle {
+  height: 20px;
+  background-color: #CCC;
+  border-bottom: 1px solid #666;
+  cursor: move;
+}
+
+/*
+ The DragResize object name is automatically applied to all generated
+ corner resize handles, as well as one of the individual classes below.
+*/
+
+.dragresize {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  font-size: 1px;
+  background: #EEE;
+  border: 1px solid #333;
+}
+
+/*
+ Individual corner classes - required for resize support.
+ These are based on the object name plus the handle ID.
+*/
+
+.dragresize-tl {
+  top: -8px;
+  left: -8px;
+  cursor: nw-resize;
+}
+
+.dragresize-tm {
+  top: -8px;
+  left: 50%;
+  margin-left: -4px;
+  cursor: n-resize;
+}
+
+.dragresize-tr {
+  top: -8px;
+  right: -8px;
+  cursor: ne-resize;
+}
+
+.dragresize-ml {
+  top: 50%;
+  margin-top: -4px;
+  left: -8px;
+  cursor: w-resize;
+}
+
+.dragresize-mr {
+  top: 50%;
+  margin-top: -4px;
+  right: -8px;
+  cursor: e-resize;
+}
+
+.dragresize-bl {
+  bottom: -8px;
+  left: -8px;
+  cursor: sw-resize;
+}
+
+.dragresize-bm {
+  bottom: -8px;
+  left: 50%;
+  margin-left: -4px;
+  cursor: s-resize;
+}
+
+.dragresize-br {
+  bottom: -8px;
+  right: -8px;
+  cursor: se-resize;
+}
+
+/* Draggable end*/
+
+/* Drag and Drop */
+
+.error {
+  color: #B71C1C;
+}
+
+#userActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.2em;
+  border: solid 2px #333333;
+  border-radius: 10px;
+  width: 100%;
+  height: 12em;
+}
+
+#imgPrime {
+  display: none;
+}
+
+/* Drag and Drop end*/
+
+/* Чекбокс */
+
+input[type="checkbox"] {
+  width: 35px;
+  height: 20px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #c6c6c6;
+  outline: none;
+  border-radius: 50px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+  transition: 0.5s;
+  position: relative;
+  margin-left: .5em;
+  margin-right: 0.5em;
+}
+
+input:checked[type="checkbox"] {
+  background: #02a9f4;
+}
+
+input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  background: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  transition: 0.5s;
+}
+
+input:checked[type="checkbox"]::before {
+  left: 15px;
+}
+
+/* Чекбокс end*/
+
+/* Переключатель */
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+
+.option-input:hover {
+  background: #9faab7;
+}
+
+.option-input:checked {
+  background: #02a9f4;
+}
+
+.option-input:checked::before {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 26.66667px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.option-input.radio {
+  border-radius: 50%;
+}
+
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+/* Переключатель end*/
+
+.d-n {
+  display: none;
+}

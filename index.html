@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Генератор ссылок на фото</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+	<div class="wrap-half">
+
+		<section>
+			<div class="s-drag_wrapper drag-img">
+				<img id="imgPrime" src="" alt="uploaded image placeholder" />
+				<img id="logo" src="logo.png" alt="">
+			</div>
+		</section>
+
+		<section class="s-drag">
+			<div class="wrapper">
+				<div id="userActions">
+					<p>Перетащить сюда</p>
+					<input type="file" id="fileUpload" style="opacity: 0;" />
+				</div>
+			</div>
+
+			<div class="wrapper wrapper-get">
+				<button id="btn" class="btn-get">Получить</button>
+				<textarea name="" id="result" cols="30" rows="1"></textarea>
+			</div>
+
+			<div class="s-drag_wrapper drag-option">
+
+				<div class="option-list" style="display: none;">
+					<div class="item">
+						<h4>Прозрачный</h4>
+						<input type="checkbox" id="opacity">
+						<h4>Не прозрачный</h4>
+					</div>
+					<div class="item">
+						<h4>С http</h4>
+						<input type="checkbox" id="http">
+						<h4>Без http</h4>
+					</div>
+				</div>
+				<div class="wrap__option">
+					<h3>ДОБАВИТЬ</h3>
+					<i class="demo-icon icon-cog">&#xe802;</i>
+				</div>
+
+				<div class="wrapper-add">
+					<div class="btn-add" id="site">
+						Сайт
+					</div>
+					<div class="btn-add" id="email">
+						Email
+					</div>
+					<div class="btn-add" id="inst">
+						Instagram
+					</div>
+					<div class="btn-add" id="tell">
+						Телефон
+					</div>
+				</div>
+
+				<ul class="wrap-field">
+
+				</ul>
+			</div>
+		</section>
+	</div>
+
+
+
+	<script src="jquery.min.js"></script>
+	<script src="script.js"></script>
+	<script src="draganddrop.js"></script>
+	<script src="dragresize.js"></script>
+
+	<script type="text/javascript">
+		var dragresize = new DragResize('dragresize', {
+			minWidth: 10,
+			minHeight: 5,
+			minLeft: 0,
+			minTop: 0,
+			maxLeft: 650,
+			maxTop: 3000
+		});
+
+		dragresize.isElement = function (elm) {
+			if (elm.className && elm.className.indexOf('drsElement') > -1) return true;
+		};
+		dragresize.isHandle = function (elm) {
+			if (elm.className && elm.className.indexOf('drsMoveHandle') > -1) return true;
+		};
+
+		dragresize.ondragfocus = function () {};
+		dragresize.ondragstart = function (isResize) {};
+		dragresize.ondragmove = function (isResize) {};
+		dragresize.ondragend = function (isResize) {};
+		dragresize.ondragblur = function () {};
+
+		dragresize.apply(document);
+
+		//]]>
+	</script>
+</body>
+
+</html>
